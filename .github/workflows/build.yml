@@ -40,7 +40,7 @@ jobs:
       run: |
         cd src-tauri/target/release
 
-        for lib in libicui* libicuuc* libxml2* libwebkit2gtk-* libjavascriptcoregtk-*; do
+        for lib in libicu* libxml2* libwebkit2gtk-* libjavascriptcoregtk-*; do
           for path in $(ldd gmpublisher | awk '{print $3}' | grep "$lib"); do
             cp -v "$path" .
           done
@@ -48,7 +48,7 @@ jobs:
 
         patchelf --set-rpath '$ORIGIN' gmpublisher
 
-        zip -r gmpublisher_linux64.zip gmpublisher libsteam_api.so libwebkit2gtk-* libjavascriptcoregtk-* libicui* libicuuc* libxml2*
+        zip -r gmpublisher_linux64.zip gmpublisher libsteam_api.so libwebkit2gtk-* libjavascriptcoregtk-* libicu* libxml2*
 
     - name: Release
       uses: softprops/action-gh-release@v1
