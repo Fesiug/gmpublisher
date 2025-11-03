@@ -40,7 +40,7 @@ jobs:
       run: |
         cd src-tauri/target/release
 
-        for lib in libwebkit2gtk-* libjavascriptcoregtk-*; do
+        for lib in libicui* libicuuc* libxml2* libwebkit2gtk-* libjavascriptcoregtk-*; do
           for path in $(ldd gmpublisher | awk '{print $3}' | grep "$lib"); do
             cp -v "$path" .
           done
